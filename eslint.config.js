@@ -67,7 +67,7 @@ export default tseslint.config(
           },
           {
               selector: 'variable',
-              format: ['camelCase', 'UPPER_CASE'],
+              "format": ["camelCase", "UPPER_CASE", "PascalCase"],
               leadingUnderscore: 'allow',
               trailingUnderscore: 'allow',
           },
@@ -76,6 +76,10 @@ export default tseslint.config(
               format: ['camelCase'],
           },
           { selector: 'enum', format: ['PascalCase'] },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]  // Enforces PascalCase for types and components
+          }
       ],
       '@typescript-eslint/no-unused-vars': [
           'error',
