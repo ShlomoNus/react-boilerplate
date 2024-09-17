@@ -7,11 +7,17 @@ import eslintReactRefresh from 'eslint-plugin-react-refresh';
 import prettierPlugin from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
+
+eslintReact.configs.recommended.plugins = { eslintReact }
+eslintReact.configs.recommended.languageOptions = {
+  parserOptions: eslintReact.configs.recommended.parserOptions
+}
+delete eslintReact.configs.recommended.parserOptions
 export default tseslint.config(
   {
     plugins: {
       '@typescript-eslint': tseslint.plugin,
-      'react': eslintReact,
+      react: eslintReact,
       'react-hooks': eslintReactHooks,
       'react-refresh': eslintReactRefresh,
       prettier: prettierPlugin,
@@ -22,6 +28,7 @@ export default tseslint.config(
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  eslintReact.configs.recommended,
   {
     languageOptions: {
       globals: {
@@ -45,6 +52,7 @@ export default tseslint.config(
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
+      "react/react-in-jsx-scope": "off",
       'max-params': ['error', 3],
       'max-lines': ['warn', { max: 100 }],
       '@typescript-eslint/no-explicit-any': 'warn',
