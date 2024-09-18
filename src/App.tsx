@@ -1,3 +1,5 @@
-const App = () => <div>dkandk</div>;
+const App = () => {
+  <div>App</div>;
+};
 
 export default App;
