@@ -10,13 +10,11 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 
 
 export default tseslint.config(
-  react.configs.recommended,
 
   {
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       'react': eslintReact,
-      
       'react-hooks': eslintReactHooks,
       'react-refresh': eslintReactRefresh,
       prettier: prettierPlugin,
