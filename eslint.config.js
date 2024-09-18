@@ -1,23 +1,19 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import eslintReact from 'eslint-plugin-react';
+import react from 'eslint-plugin-react';
 import eslintReactHooks from 'eslint-plugin-react-hooks';
 import eslintReactRefresh from 'eslint-plugin-react-refresh';
 import prettierPlugin from 'eslint-plugin-prettier';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
 
-eslintReact.configs.recommended.plugins = { eslintReact }
-eslintReact.configs.recommended.languageOptions = {
-  parserOptions: eslintReact.configs.recommended.parserOptions
-}
-delete eslintReact.configs.recommended.parserOptions
+
 export default tseslint.config(
   {
     plugins: {
       '@typescript-eslint': tseslint.plugin,
-      react: eslintReact,
+       react,
       'react-hooks': eslintReactHooks,
       'react-refresh': eslintReactRefresh,
       prettier: prettierPlugin,
@@ -28,7 +24,6 @@ export default tseslint.config(
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  eslintReact.configs.recommended,
   {
     languageOptions: {
       globals: {
@@ -38,8 +33,18 @@ export default tseslint.config(
       },
       parserOptions: {
         project: ['tsconfig.json', 'tsconfig.node.json','tsconfig.app.json'],
+        ecmaFeatures: {
+          jsx: true,
+        },
       }
     },
+  },
+  {
+    files: ['**/*.js'],
+    ...tseslint.configs.disableTypeChecked,
+    rules:{
+      "@typescript-eslint/no-require-imports": "off"
+    }
   },
   {
     files: ['**/*.{ts,tsx}'],
@@ -53,6 +58,8 @@ export default tseslint.config(
       'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
       "react/react-in-jsx-scope": "off",
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
       'max-params': ['error', 3],
       'max-lines': ['warn', { max: 100 }],
       '@typescript-eslint/no-explicit-any': 'warn',
