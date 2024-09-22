@@ -51,12 +51,18 @@ export default tseslint.config(
             'prefer-const': 'error',
             'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
             'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-            'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
+            'react/function-component-definition': [
+                2,
+                {
+                    namedComponents: 'function-declaration',
+                    unnamedComponents: 'function-expression',
+                },
+            ],
             'react/self-closing-comp': ['error', { component: true, html: true }],
             'react/react-in-jsx-scope': 'off',
             'react/jsx-uses-react': 'error',
             'react/jsx-uses-vars': 'error',
-            'max-params': ['error', 3],
+            'max-params': ['error', 2],
             'max-lines': ['warn', { max: 100 }],
             '@typescript-eslint/no-explicit-any': 'warn',
             '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -149,5 +155,5 @@ export default tseslint.config(
             '@typescript-eslint/no-misused-promises': 'error',
             '@typescript-eslint/promise-function-async': 'error',
         },
-    },
+    }
 );
