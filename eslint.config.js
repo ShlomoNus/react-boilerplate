@@ -19,7 +19,7 @@ export default tseslint.config(
     },
     {},
     {
-        ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js'],
+        ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js','src/components/ui'],
     },
     js.configs.recommended,
     ...tseslint.configs.recommended,
@@ -84,13 +84,13 @@ export default tseslint.config(
                 },
                 {
                     selector: 'variable',
-                    format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+                    format: ['camelCase', 'UPPER_CASE'],
                     leadingUnderscore: 'allow',
                     trailingUnderscore: 'allow',
                 },
                 {
                     selector: 'function',
-                    format: ['camelCase'],
+                    format: ['camelCase','PascalCase'],
                 },
                 { selector: 'enum', format: ['PascalCase'] },
                 {
